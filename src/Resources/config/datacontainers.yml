@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    public: true
+    autowire: true
+
+  huh.google_charts.data_container.google_charts_container:
+    class: HeimrichHannot\GoogleChartsBundle\DataContainer\GoogleChartsContainer

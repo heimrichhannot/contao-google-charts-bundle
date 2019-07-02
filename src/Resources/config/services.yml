@@ -1,0 +1,34 @@
+services:
+  _defaults:
+    autowire: true
+
+  _instanceof:
+    HeimrichHannot\GoogleChartsBundle\Charts\ChartInterface:
+      tags: ['huh.google_charts.chart']
+
+    HeimrichHannot\GoogleChartsBundle\DataTypes\DataTypeInterface:
+      tags: ['huh.google_charts.data_type']
+
+
+# Choice
+  huh.google_charts.choice.template.chart:
+    class: HeimrichHannot\GoogleChartsBundle\Choice\ChartTemplateChoice
+    public: true
+
+
+# Manager
+
+  huh.google_charts.manager.google_charts:
+    class: HeimrichHannot\GoogleChartsBundle\Manager\GoogleChartsManager
+    public: true
+  HeimrichHannot\GoogleChartsBundle\Manager\GoogleChartsManager: '@huh.google_charts.manager.google_charts'
+
+# Charts
+
+  HeimrichHannot\GoogleChartsBundle\Charts\Concrete\LineChart: ~
+
+
+# DataTypes
+
+  HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeJson: ~
+  HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeReference: ~

@@ -1,0 +1,4 @@
+huh_google_charts:
+  templates:
+    chart_prefixes:
+      - chart_
