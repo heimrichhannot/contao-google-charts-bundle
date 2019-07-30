@@ -6,7 +6,7 @@ namespace HeimrichHannot\GoogleChartsBundle\ConfigElementType;
 
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\System;
-use HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeReference;
+use HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeReference;
 use HeimrichHannot\GoogleChartsBundle\Event\ReaderGoogleChartsBeforeAddToItemDataEvent;
 use HeimrichHannot\ReaderBundle\ConfigElementType\ConfigElementType;
 use HeimrichHannot\ReaderBundle\Item\ItemInterface;
@@ -70,7 +70,7 @@ class GoogleChartsReaderConfigElementType implements ConfigElementType
         }
 
         $event = $this->dispatcher->dispatch(ReaderGoogleChartsBeforeAddToItemDataEvent::NAME, new ReaderGoogleChartsBeforeAddToItemDataEvent($item, $readerConfigElement, $chartConfig));
-        $chart = $this->container->get('huh.google_charts.manager.google_charts')->createChart($event->getChartConfig());
+        $chart = $this->container->get('huh.google_charts.manager.google_charts')->renderChart($event->getChartConfig());
 
         $item->setFormattedValue('googleChart', $chart);
     }

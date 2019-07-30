@@ -3,7 +3,7 @@
 /**
  * Model
  */
-$GLOBALS['TL_MODELS']['tl_google_charts']         = 'HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel';
+$GLOBALS['TL_MODELS']['tl_google_chart']         = 'HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel';
 
 
 /**
@@ -21,6 +21,6 @@ array_insert(
  * Backend modules
  */
 $GLOBALS['BE_MOD']['content']['google_charts'] = [
-    'tables' => ['tl_google_charts'],
+    'tables' => ['tl_google_chart'],
     'icon'   => 'system/modules/google_charts_bundle/assets/img/icon_google_charts.png'
 ];

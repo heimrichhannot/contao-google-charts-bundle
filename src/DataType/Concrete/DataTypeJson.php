@@ -1,13 +1,12 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete;
+namespace HeimrichHannot\GoogleChartsBundle\DataType\Concrete;
 
 
 use Contao\StringUtil;
-use HeimrichHannot\GoogleChartsBundle\DataTypes\AbstractDataType;
+use HeimrichHannot\GoogleChartsBundle\DataType\AbstractDataType;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsChartDataEmpty;
-use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
 
 class DataTypeJson extends AbstractDataType
 {

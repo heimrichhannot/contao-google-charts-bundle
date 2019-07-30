@@ -1,14 +1,14 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\DataTypes;
+namespace HeimrichHannot\GoogleChartsBundle\DataType;
 
 
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
 
 interface DataTypeInterface
 {
-    public function createDataType(GoogleChartsModel $config): void;
+    public function initDataType(GoogleChartsModel $config): void;
 
     public function getData();
 

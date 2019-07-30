@@ -4,8 +4,8 @@
 namespace HeimrichHannot\GoogleChartsBundle\Manager;
 
 
-use HeimrichHannot\GoogleChartsBundle\Charts\AbstractChart;
-use HeimrichHannot\GoogleChartsBundle\DataTypes\AbstractDataType;
+use HeimrichHannot\GoogleChartsBundle\Chart\AbstractChart;
+use HeimrichHannot\GoogleChartsBundle\DataType\AbstractDataType;
 use HeimrichHannot\GoogleChartsBundle\Event\GoogleChartsModifyChartDataEvent;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsChartClassNotFound;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsConfigNotFound;
@@ -76,7 +76,7 @@ class GoogleChartsManager
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function createChart($config)
+    public function renderChart($config)
     {
         if(is_int($config)) {
             $config = $this->getChartConfig($config);
@@ -96,7 +96,6 @@ class GoogleChartsManager
             throw new GoogleChartsDataTypeNotFound('No data Type found for config ' . $configModel->id);
         }
 
-
         /**
          * @var AbstractChart $chart
          */
@@ -111,12 +110,15 @@ class GoogleChartsManager
 
     public function generateChart(AbstractChart $chart, AbstractDataType $dataType, GoogleChartsModel $config)
     {
-        $chart->createChart($config);
-        $dataType->createDataType($config);
+        $chart->initChart($config);
+        $dataType->initDataType($config);
 
         $event = $this->container->get('event_dispatcher')->dispatch(GoogleChartsModifyChartDataEvent::NAME, new GoogleChartsModifyChartDataEvent($config, $dataType->getData()));
 
-        $chart->setChartData($chart->getChart(), $event->getData());
+        if (!empty($event->getData()))
+        {
+            $chart->setChartData($chart->getChart(), $event->getData());
+        }
 
         return $chart;
     }

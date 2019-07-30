@@ -90,13 +90,13 @@ DataTypes are added as services. Add the '_instanceof' part to your service.yml 
 ```
 services:
   _instanceof:
-      HeimrichHannot\GoogleChartsBundle\DataTypes\DataTypeInterface:
+      HeimrichHannot\GoogleChartsBundle\DataType\DataTypeInterface:
         tags: ['huh.google_charts.data_type']
 
 # DataTypes
   
-  HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeJson: ~
-  HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeReference: ~
+  HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeJson: ~
+  HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeReference: ~
 
 ```
 

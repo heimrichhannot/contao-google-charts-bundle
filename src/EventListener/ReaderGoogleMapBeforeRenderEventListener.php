@@ -18,7 +18,6 @@ class ReaderGoogleMapBeforeRenderEventListener
         $item         = $event->getItem();
         $readerConfig = $event->getReaderConfigElement();
 
-
         if (!$readerConfig->displayElevation) {
             return;
         }
@@ -35,7 +34,8 @@ class ReaderGoogleMapBeforeRenderEventListener
 
 
         $chartConfig->dataEntity = $item->getRawValue('id');
-        $chart                   = $chartManager->createChart($chartConfig);
+        $chart                   = $chartManager->renderChart($chartConfig);
+
         $item->setFormattedValue('elevation', $chart);
     }
 

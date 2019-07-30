@@ -1,11 +1,10 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\Charts\Concrete;
+namespace HeimrichHannot\GoogleChartsBundle\Chart\Concrete;
 
 
-use CMEN\GoogleChartsBundle\GoogleCharts\Options\VAxis;
-use HeimrichHannot\GoogleChartsBundle\Charts\AbstractChart;
+use HeimrichHannot\GoogleChartsBundle\Chart\AbstractChart;
 use HeimrichHannot\GoogleChartsBundle\DataContainer\GoogleChartsContainer;
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
 
@@ -24,7 +23,7 @@ class LineChart extends AbstractChart
     /**
      * @param GoogleChartsModel $config
      */
-    public function createChart(GoogleChartsModel $config): void
+    public function initChart(GoogleChartsModel $config): void
     {
         $this->setChart(new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart());
         $this->setConfig($config);

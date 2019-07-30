@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\DataTypes;
+namespace HeimrichHannot\GoogleChartsBundle\DataType;
 
 
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
@@ -33,7 +33,7 @@ abstract class AbstractDataType implements DataTypeInterface
     /**
      * @param GoogleChartsModel $config
      */
-    public function createDataType(GoogleChartsModel $config): void
+    public function initDataType(GoogleChartsModel $config): void
     {
         $this->setConfig($config);
         $this->setData($config->data);

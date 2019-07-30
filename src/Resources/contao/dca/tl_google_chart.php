@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['TL_DCA']['tl_google_charts'] = [
+$GLOBALS['TL_DCA']['tl_google_chart'] = [
     'config'   => [
         'dataContainer'     => 'Table',
         'enableVersioning'  => true,
@@ -30,29 +30,29 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
         ],
         'operations' => [
             'edit'   => [
-                'label' => &$GLOBALS['TL_LANG']['tl_google_charts']['edit'],
+                'label' => &$GLOBALS['TL_LANG']['tl_google_chart']['edit'],
                 'href'  => 'act=edit',
                 'icon'  => 'edit.gif'
             ],
             'copy'   => [
-                'label' => &$GLOBALS['TL_LANG']['tl_google_charts']['copy'],
+                'label' => &$GLOBALS['TL_LANG']['tl_google_chart']['copy'],
                 'href'  => 'act=copy',
                 'icon'  => 'copy.gif'
             ],
             'delete' => [
-                'label'      => &$GLOBALS['TL_LANG']['tl_google_charts']['delete'],
+                'label'      => &$GLOBALS['TL_LANG']['tl_google_chart']['delete'],
                 'href'       => 'act=delete',
                 'icon'       => 'delete.gif',
                 'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ],
             'toggle' => [
-                'label'           => &$GLOBALS['TL_LANG']['tl_google_charts']['toggle'],
+                'label'           => &$GLOBALS['TL_LANG']['tl_google_chart']['toggle'],
                 'icon'            => 'visible.gif',
                 'attributes'      => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-                'button_callback' => ['tl_google_charts', 'toggleIcon']
+                'button_callback' => ['tl_google_chart', 'toggleIcon']
             ],
             'show'   => [
-                'label' => &$GLOBALS['TL_LANG']['tl_google_charts']['show'],
+                'label' => &$GLOBALS['TL_LANG']['tl_google_chart']['show'],
                 'href'  => 'act=show',
                 'icon'  => 'show.gif'
             ],
@@ -65,15 +65,15 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
     ],
     'subpalettes' => [
         'published'    => 'start,stop',
-        'dataType_' . \Contao\System::getContainer()->get('huh.google_charts.manager.google_charts')->getClassChoice(\HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeJson::class)  => 'data',
-        'dataType_' . \Contao\System::getContainer()->get('huh.google_charts.manager.google_charts')->getClassChoice(\HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete\DataTypeReference::class) => 'dataContainer,dataField,dataEntity'
+        'dataType_' . \Contao\System::getContainer()->get('huh.google_charts.manager.google_charts')->getClassChoice(\HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeJson::class)  => 'data',
+        'dataType_' . \Contao\System::getContainer()->get('huh.google_charts.manager.google_charts')->getClassChoice(\HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeReference::class) => 'dataContainer,dataField,dataEntity'
     ],
     'fields'   => [
         'id' => [
             'sql'                     => "int(10) unsigned NOT NULL auto_increment"
         ],
         'tstamp' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['tstamp'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['tstamp'],
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ],
         'dateAdded' => [
@@ -84,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ],
         'title' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['title'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['title'],
             'exclude'                 => true,
             'search'                  => true,
             'sorting'                 => true,
@@ -94,17 +94,17 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "varchar(255) NOT NULL default ''"
         ],
         'type' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['type'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['type'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'select',
             'options_callback'        => ['huh.google_charts.data_container.google_charts_container', 'getChartTypes'],
-            'reference'               => $GLOBALS['TL_LANG']['tl_google_charts']['type'],
+            'reference'               => $GLOBALS['TL_LANG']['tl_google_chart']['type'],
             'eval'                    => ['mandatory' => true,'submitOnChange' => true, 'includeBlankOption' => true, 'tl_class' => 'clr w50'],
             'sql'                     => "varchar(64) NOT NULL default ''",
         ],
         'chartClass' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['chartClass'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['chartClass'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'select',
@@ -118,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "varchar(128) NOT NULL default ''",
         ],
         'lineWidth' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['lineWidth'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['lineWidth'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'default'                 => '3',
@@ -126,7 +126,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "varchar(8) NOT NULL default ''"
         ],
         'lineColor' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['lineColor'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['lineColor'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'default'                 => '#515151',
@@ -134,7 +134,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "varchar(16) NOT NULL default ''"
         ],
         'curveType' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['curveType'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['curveType'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options_callback'        => ['huh.google_charts.data_container.google_charts_container', 'getCurveTypes'],
@@ -142,25 +142,25 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "varchar(16) NOT NULL default ''"
         ],
         'labelX' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['labelX'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['labelX'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => ['tl_class'=>'clr w50'],
             'sql'                     => "varchar(128) NOT NULL default ''"
         ],
         'labelY' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['labelY'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['labelY'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => ['tl_class'=>'w50'],
             'sql'                     => "varchar(128) NOT NULL default ''"
         ],
         'dataType' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['dataType'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['dataType'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options_callback'        => ['huh.google_charts.data_container.google_charts_container', 'getDataTypeClasses'],
-            'reference'               => &$GLOBALS['TL_LANG']['tl_google_charts']['dataType'],
+            'reference'               => &$GLOBALS['TL_LANG']['tl_google_chart']['dataType'],
             'eval'                    => [
                 'tl_class'=>'w50',
                 'includeBlankOption' => true,
@@ -171,14 +171,14 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "varchar(128) NOT NULL default ''"
         ],
         'data' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['data'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['data'],
             'exclude'                 => true,
             'inputType'               => 'textarea',
             'eval'                    => ['tl_class'=>'w50', 'rte'=>'ace|json'],
             'sql'                     => "blob NULL"
         ],
         'dataContainer'  => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['dataContainer'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['dataContainer'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options_callback'        => ['huh.utils.choice.data_container', 'getChoices'],
@@ -192,7 +192,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'              => "varchar(128) NOT NULL default ''",
         ],
         'dataField'  => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['dataField'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['dataField'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options_callback'        => ['huh.google_charts.data_container.google_charts_container', 'getFields'],
@@ -205,7 +205,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'              => "varchar(128) NOT NULL default ''",
         ],
         'dataEntity'  => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['dataEntity'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['dataEntity'],
             'exclude'                 => true,
             'inputType'               => 'select',
             'options_callback'        => ['huh.google_charts.data_container.google_charts_container', 'getEntities'],
@@ -217,7 +217,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'              => "varchar(128) NOT NULL default ''",
         ],
         'chartTemplate' => [
-            'label'            => &$GLOBALS['TL_LANG']['tl_google_charts']['chartTemplate'],
+            'label'            => &$GLOBALS['TL_LANG']['tl_google_chart']['chartTemplate'],
             'exclude'          => true,
             'inputType'        => 'select',
             'default'          => 'default',
@@ -226,7 +226,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'              => "varchar(128) NOT NULL default ''",
         ],
         'published' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['published'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['published'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
@@ -234,14 +234,14 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
             'sql'                     => "char(1) NOT NULL default ''"
         ],
         'start' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['start'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['start'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => ['rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'],
             'sql'                     => "varchar(10) NOT NULL default ''"
         ],
         'stop' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_google_charts']['stop'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_google_chart']['stop'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => ['rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'],
@@ -251,7 +251,7 @@ $GLOBALS['TL_DCA']['tl_google_charts'] = [
 ];
 
 
-class tl_google_charts extends \Contao\Backend
+class tl_google_chart extends \Contao\Backend
 {
 
     public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
@@ -265,7 +265,7 @@ class tl_google_charts extends \Contao\Backend
         }
 
         // Check permissions AFTER checking the tid, so hacking attempts are logged
-        if (!$user->hasAccess('tl_google_charts::published', 'alexf'))
+        if (!$user->hasAccess('tl_google_chart::published', 'alexf'))
         {
             return '';
         }
@@ -295,9 +295,9 @@ class tl_google_charts extends \Contao\Backend
         }
 
         // Trigger the onload_callback
-        if (is_array($GLOBALS['TL_DCA']['tl_google_charts']['config']['onload_callback']))
+        if (is_array($GLOBALS['TL_DCA']['tl_google_chart']['config']['onload_callback']))
         {
-            foreach ($GLOBALS['TL_DCA']['tl_google_charts']['config']['onload_callback'] as $callback)
+            foreach ($GLOBALS['TL_DCA']['tl_google_chart']['config']['onload_callback'] as $callback)
             {
                 if (is_array($callback))
                 {
@@ -311,7 +311,7 @@ class tl_google_charts extends \Contao\Backend
         }
 
         // Check the field access
-        if (!$user->hasAccess('tl_google_charts::published', 'alexf'))
+        if (!$user->hasAccess('tl_google_chart::published', 'alexf'))
         {
             throw new \Contao\CoreBundle\Exception\AccessDeniedException('Not enough permissions to publish/unpublish google_charts item ID ' . $intId . '.');
         }
@@ -319,7 +319,7 @@ class tl_google_charts extends \Contao\Backend
         // Set the current record
         if ($dc)
         {
-            $objRow = $database->prepare("SELECT * FROM tl_google_charts WHERE id=?")
+            $objRow = $database->prepare("SELECT * FROM tl_google_chart WHERE id=?")
             ->limit(1)
             ->execute($intId);
 
@@ -329,13 +329,13 @@ class tl_google_charts extends \Contao\Backend
             }
         }
 
-        $objVersions = new \Versions('tl_google_charts', $intId);
+        $objVersions = new \Versions('tl_google_chart', $intId);
         $objVersions->initialize();
 
         // Trigger the save_callback
-        if (is_array($GLOBALS['TL_DCA']['tl_google_charts']['fields']['published']['save_callback']))
+        if (is_array($GLOBALS['TL_DCA']['tl_google_chart']['fields']['published']['save_callback']))
         {
-            foreach ($GLOBALS['TL_DCA']['tl_google_charts']['fields']['published']['save_callback'] as $callback)
+            foreach ($GLOBALS['TL_DCA']['tl_google_chart']['fields']['published']['save_callback'] as $callback)
             {
                 if (is_array($callback))
                 {
@@ -351,7 +351,7 @@ class tl_google_charts extends \Contao\Backend
         $time = time();
 
         // Update the database
-        $database->prepare("UPDATE tl_google_charts SET tstamp=$time, published='" . ($blnVisible ? '1' : "''") . "' WHERE id=?")
+        $database->prepare("UPDATE tl_google_chart SET tstamp=$time, published='" . ($blnVisible ? '1' : "''") . "' WHERE id=?")
         ->execute($intId);
 
         if ($dc)
@@ -361,9 +361,9 @@ class tl_google_charts extends \Contao\Backend
         }
 
         // Trigger the onsubmit_callback
-        if (is_array($GLOBALS['TL_DCA']['tl_google_charts']['config']['onsubmit_callback']))
+        if (is_array($GLOBALS['TL_DCA']['tl_google_chart']['config']['onsubmit_callback']))
         {
-            foreach ($GLOBALS['TL_DCA']['tl_google_charts']['config']['onsubmit_callback'] as $callback)
+            foreach ($GLOBALS['TL_DCA']['tl_google_chart']['config']['onsubmit_callback'] as $callback)
             {
                 if (is_array($callback))
                 {

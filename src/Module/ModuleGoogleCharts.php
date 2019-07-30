@@ -44,7 +44,7 @@ class ModuleGoogleCharts extends Module
     {
         $this->Template->hl    = $this->hl;
 
-        $this->Template->chart = System::getContainer()->get('huh.google_charts.manager.google_charts')->createChart((int) $this->googleChartsConfig);
+        $this->Template->chart = System::getContainer()->get('huh.google_charts.manager.google_charts')->renderChart((int) $this->googleChartsConfig);
     }
 
 }

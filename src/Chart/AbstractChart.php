@@ -1,14 +1,13 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\Charts;
+namespace HeimrichHannot\GoogleChartsBundle\Chart;
 
 
 use CMEN\GoogleChartsBundle\GoogleCharts\Chart;
 use Contao\StringUtil;
 use HeimrichHannot\GoogleChartsBundle\DataContainer\GoogleChartsContainer;
 use HeimrichHannot\GoogleChartsBundle\Event\GoogleChartsModifyChartDataEvent;
-use HeimrichHannot\GoogleChartsBundle\Event\GoogleChartsModifyDataEvent;
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -40,10 +39,9 @@ abstract class AbstractChart implements ChartInterface
     }
 
 
-    public abstract function createChart(GoogleChartsModel $config): void;
+    public abstract function initChart(GoogleChartsModel $config): void;
 
     public abstract function setChartOptions(&$chart, GoogleChartsModel $config): void;
-
 
     /**
      * @param Chart $chart

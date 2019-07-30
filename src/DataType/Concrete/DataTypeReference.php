@@ -1,10 +1,10 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\DataTypes\Concrete;
+namespace HeimrichHannot\GoogleChartsBundle\DataType\Concrete;
 
 
-use HeimrichHannot\GoogleChartsBundle\DataTypes\AbstractDataType;
+use HeimrichHannot\GoogleChartsBundle\DataType\AbstractDataType;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsNoReferenceEntitySetInChartConfig;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsReferenceEntityNotFound;
 

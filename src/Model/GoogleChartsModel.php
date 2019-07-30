@@ -19,5 +19,5 @@ use Contao\Model;
  */
 class GoogleChartsModel extends Model
 {
-    static $strTable = 'tl_google_charts';
+    static $strTable = 'tl_google_chart';
 }

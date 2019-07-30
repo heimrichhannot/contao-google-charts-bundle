@@ -18,7 +18,7 @@ $dca['fields']['googleChartsConfig'] = [
     'exclude'    => true,
     'filter'     => true,
     'inputType'  => 'select',
-    'foreignKey' => 'tl_google_charts.title',
+    'foreignKey' => 'tl_google_chart.title',
     'eval'       => ['tl_class' => 'long clr', 'mandatory' => true, 'includeBlankOption' => true, 'chosen' => true],
     'sql'        => "int(10) unsigned NOT NULL default '0'"
 ];

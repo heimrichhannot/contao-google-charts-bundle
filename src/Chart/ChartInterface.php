@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HeimrichHannot\GoogleChartsBundle\Charts;
+namespace HeimrichHannot\GoogleChartsBundle\Chart;
 
 
 use CMEN\GoogleChartsBundle\GoogleCharts\Chart;
@@ -12,7 +12,7 @@ interface ChartInterface
     public function getChartType();
 
 
-    public function createChart(GoogleChartsModel $config): void;
+    public function initChart(GoogleChartsModel $config): void;
 
     /**
      * @param Chart $chart
