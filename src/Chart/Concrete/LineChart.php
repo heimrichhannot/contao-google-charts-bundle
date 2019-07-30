@@ -42,7 +42,7 @@ class LineChart extends AbstractChart
             ->setLineWidth($this->getConfigValue('lineWidth'))
             ->setColors([html_entity_decode($this->getConfigValue('lineColor'))]);
 
-        $this->chart->getOptions()->getHAxis()->setTitle($config->labelY);
-        $this->chart->getOptions()->getVAxis()->setTitle($config->labelX);
+        $this->chart->getOptions()->getHAxis()->setTitle($config->labelX);
+        $this->chart->getOptions()->getVAxis()->setTitle($config->labelY);
     }
 }
