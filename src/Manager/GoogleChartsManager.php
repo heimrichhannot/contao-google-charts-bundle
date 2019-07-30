@@ -5,6 +5,7 @@ namespace HeimrichHannot\GoogleChartsBundle\Manager;
 
 
 use HeimrichHannot\GoogleChartsBundle\Chart\AbstractChart;
+use HeimrichHannot\GoogleChartsBundle\Chart\ChartInterface;
 use HeimrichHannot\GoogleChartsBundle\DataType\AbstractDataType;
 use HeimrichHannot\GoogleChartsBundle\Event\GoogleChartsModifyChartDataEvent;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsChartClassNotFound;
@@ -64,52 +65,26 @@ class GoogleChartsManager
         $this->dataTypes[$this->getClassChoice($className)] = $dataType;
     }
 
-
-    /**
-     * @param int|GoogleChartsModel $config
-     * @return string
-     * @throws GoogleChartsChartClassNotFound
-     * @throws GoogleChartsConfigNotFound
-     * @throws GoogleChartsDataTypeNotFound
-     * @throws \Psr\Cache\InvalidArgumentException
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
-     */
-    public function renderChart($config)
+    public function renderChart(ChartInterface $chart, $config)
     {
-        if(is_int($config)) {
-            $config = $this->getChartConfig($config);
-        }
-
-        if (!($config instanceof GoogleChartsModel)){
-            throw new GoogleChartsConfigNotFound('Could not find google chart config for id ' . $config);
-        } else {
-            $configModel = $config;
-        }
-
-        if (!($chartClass = $this->getChartClassByConfig($configModel))) {
-            throw new GoogleChartsChartClassNotFound('No chart class found for type ' . $configModel->type);
-        }
-
-        if (!($dataType = $this->getDataTypeByConfig($configModel))) {
-            throw new GoogleChartsDataTypeNotFound('No data Type found for config ' . $configModel->id);
-        }
-
-        /**
-         * @var AbstractChart $chart
-         */
-        $chart = $this->generateChart($chartClass, $dataType, $configModel);
-
-        return $this->container->get('huh.utils.template')->renderTwigTemplate($configModel->chartTemplate, [
+        return $this->container->get('huh.utils.template')->renderTwigTemplate($config->chartTemplate, [
             'chart' => $chart->getChart(),
-            'selector' => $this->getChartSelector($configModel)
+            'selector' => $this->getChartSelector($config)
         ]);
     }
 
-
-    public function generateChart(AbstractChart $chart, AbstractDataType $dataType, GoogleChartsModel $config)
+    public function generateChart($config)
     {
+        $config = $this->getChartConfig($config);
+
+        if (!($chart = $this->getChartClassByConfig($config))) {
+            throw new GoogleChartsChartClassNotFound('No chart class found for type ' . $config->type);
+        }
+
+        if (!($dataType = $this->getDataTypeByConfig($config))) {
+            throw new GoogleChartsDataTypeNotFound('No data Type found for config ' . $config->id);
+        }
+
         $chart->initChart($config);
         $dataType->initDataType($config);
 
@@ -125,12 +100,20 @@ class GoogleChartsManager
 
 
     /**
-     * @param int $id
+     * @param mixed $id ID or model
      * @return null|GoogleChartsModel
      */
-    public function getChartConfig(int $id)
+    public function getChartConfig($config)
     {
-        return $this->container->get('contao.framework')->getAdapter(GoogleChartsModel::class)->findByPk($id);
+        if (is_int($config)) {
+            $config = $this->container->get('contao.framework')->getAdapter(GoogleChartsModel::class)->findByPk($config);
+        }
+
+        if (!($config instanceof GoogleChartsModel)){
+            throw new GoogleChartsConfigNotFound('Could not find google chart config for id ' . $config);
+        }
+
+        return $config;
     }
 
 

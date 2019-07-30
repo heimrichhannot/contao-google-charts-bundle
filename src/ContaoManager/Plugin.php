@@ -27,14 +27,13 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
             $loadAfter[] = 'HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle';
         }
 
-        if(class_exists('HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle')) {
+        if (class_exists('HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle')) {
             $loadAfter[] = 'HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle';
         }
 
-        if(class_exists('HeimrichHannot\GoogleMapsBundle\HeimrichHannotContaoGoogleMapsBundle')) {
+        if (class_exists('HeimrichHannot\GoogleMapsBundle\HeimrichHannotContaoGoogleMapsBundle')) {
             $loadAfter[] = 'HeimrichHannot\GoogleMapsBundle\HeimrichHannotContaoGoogleMapsBundle';
         }
-
 
         return [
             BundleConfig::create(CMENGoogleChartsBundle::class),
@@ -48,14 +47,14 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
             'huh_reader',
             $extensionName,
             $extensionConfigs,
-            __DIR__.'/../Resources/config/config_reader.yml'
+            __DIR__ . '/../Resources/config/config_reader.yml'
         );
 
         $extensionConfigs = ContainerUtil::mergeConfigFile(
             'huh_encore',
             $extensionName,
             $extensionConfigs,
-            __DIR__.'/../Resources/config/config_encore.yml'
+            __DIR__ . '/../Resources/config/config_encore.yml'
         );
 
         return $extensionConfigs;

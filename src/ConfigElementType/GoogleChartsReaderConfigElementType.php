@@ -70,7 +70,9 @@ class GoogleChartsReaderConfigElementType implements ConfigElementType
         }
 
         $event = $this->dispatcher->dispatch(ReaderGoogleChartsBeforeAddToItemDataEvent::NAME, new ReaderGoogleChartsBeforeAddToItemDataEvent($item, $readerConfigElement, $chartConfig));
-        $chart = $this->container->get('huh.google_charts.manager.google_charts')->renderChart($event->getChartConfig());
+
+        $chart = $manager->generateChart($event->getChartConfig());
+        $chart = $this->container->get('huh.google_charts.manager.google_charts')->renderChart($chart, $event->getChartConfig());
 
         $item->setFormattedValue('googleChart', $chart);
     }

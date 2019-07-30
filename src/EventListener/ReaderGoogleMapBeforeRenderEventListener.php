@@ -6,6 +6,7 @@ namespace HeimrichHannot\GoogleChartsBundle\EventListener;
 
 use CMEN\GoogleChartsBundle\GoogleCharts\Chart;
 use Contao\System;
+use HeimrichHannot\GoogleChartsBundle\Chart\AbstractChart;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsConfigNotFound;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsNoChartConfigSet;
 use HeimrichHannot\GoogleMapsBundle\Event\ReaderGoogleMapBeforeRenderEvent;
@@ -17,6 +18,7 @@ class ReaderGoogleMapBeforeRenderEventListener
     {
         $item         = $event->getItem();
         $readerConfig = $event->getReaderConfigElement();
+        $map          = $event->getMap();
 
         if (!$readerConfig->displayElevation) {
             return;
@@ -28,15 +30,19 @@ class ReaderGoogleMapBeforeRenderEventListener
 
         $chartManager = System::getContainer()->get('huh.google_charts.manager.google_charts');
 
-        if (null === ($chartConfig = $chartManager->getChartConfig($readerConfig->chartConfig))) {
+        if (null === ($chartConfig = $chartManager->getChartConfig((int)$readerConfig->chartConfig))) {
             throw new GoogleChartsConfigNotFound('Chart configuration was not found for id ' . $readerConfig->chartConfig);
         }
 
 
         $chartConfig->dataEntity = $item->getRawValue('id');
-        $chart                   = $chartManager->renderChart($chartConfig);
 
-        $item->setFormattedValue('elevation', $chart);
+        /**
+         * @var AbstractChart $chart
+         */
+        $chart = $chartManager->generateChart($chartConfig);
+
+        $item->setFormattedValue('elevation', $chartManager->renderChart($chart, $chartConfig));
     }
 
     /**

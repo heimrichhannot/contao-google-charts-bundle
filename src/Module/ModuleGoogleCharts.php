@@ -42,9 +42,16 @@ class ModuleGoogleCharts extends Module
      */
     protected function compile()
     {
-        $this->Template->hl    = $this->hl;
+        $this->Template->hl = $this->hl;
 
-        $this->Template->chart = System::getContainer()->get('huh.google_charts.manager.google_charts')->renderChart((int) $this->googleChartsConfig);
+        $manager = System::getContainer()->get('huh.google_charts.manager.google_charts');
+
+        $chartConfig = $manager->getChartConfig((int) $this->googleChartsConfig);
+
+        $this->Template->chart = $manager->renderChart(
+            $manager->generateChart($chartConfig),
+            $chartConfig
+        );
     }
 
 }

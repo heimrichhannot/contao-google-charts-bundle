@@ -17,7 +17,7 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
     /**
      * Subpalettes
      */
-    $dca['subpalettes']['displayElevation'] = 'chartConfig,stepPerKilometer,syncMapAndElevation';
+    $dca['subpalettes']['displayElevation'] = 'chartConfig,stepPerKilometer';
 
     /**
      * Fields
@@ -50,14 +50,7 @@ if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('
             'default'          => 10,
             'eval'             => ['tl_class' => 'clr w50'],
             'sql'              => "int(10) unsigned NOT NULL default '10'"
-        ],
-        'syncMapAndElevation' => [
-            'label'                   => &$GLOBALS['TL_LANG']['tl_reader_config_element']['syncMapAndElevation'],
-            'exclude'                 => true,
-            'inputType'               => 'checkbox',
-            'eval'                    => ['tl_class' => 'w50'],
-            'sql'                     => "char(1) NOT NULL default ''"
-        ],
+        ]
     ];
 
     $dca['fields'] = array_merge($dca['fields'], $fields);
