@@ -61,7 +61,7 @@ class GoogleChartsReaderConfigElementType implements ConfigElementType
 
         $manager = $this->container->get('huh.google_charts.manager.google_charts');
 
-        if(null === ($chartConfig = $manager->getChartConfig($readerConfigElement->chartConfig))) {
+        if(null === ($chartConfig = $manager->getChartConfig((int) $readerConfigElement->chartConfig))) {
             return;
         }
 

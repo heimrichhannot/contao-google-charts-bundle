@@ -50,4 +50,16 @@ interface ChartInterface
      * @return mixed
      */
     public function getConfigValue(string $value);
+
+    public function addEventListener(string $eventName, string $jsCode);
+
+    /**
+     * @return array
+     */
+    public function getEventListeners(): array;
+
+    /**
+     * @param array $eventListeners
+     */
+    public function setEventListeners(array $eventListeners): void;
 }

@@ -1,4 +1,0 @@
-services:
-  HeimrichHannot\GoogleChartsBundle\EventListener\ReaderGoogleMapBeforeRenderEventListener:
-    tags:
-      - { name: kernel.event_listener, event: huh.google_maps.event.reader_before_render, method: addElevationChartToItem }

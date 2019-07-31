@@ -66,7 +66,6 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
         $loader->load('@ContaoGoogleChartsBundle/Resources/config/config.yml');
-        $loader->load('@ContaoGoogleChartsBundle/Resources/config/listener.yml');
         $loader->load('@ContaoGoogleChartsBundle/Resources/config/datacontainers.yml');
         $loader->load('@ContaoGoogleChartsBundle/Resources/config/services.yml');
     }

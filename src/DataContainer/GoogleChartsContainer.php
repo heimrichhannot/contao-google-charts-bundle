@@ -22,12 +22,14 @@ class GoogleChartsContainer
         self::CURVE_TYPE_FUNCTION
     ];
 
-    const DATA_TYPE_JSON     = 'json';
-    const DATA_TYPE_REFERENCE = 'reference';
+    const DATA_TYPE_JSON       = 'json';
+    const DATA_TYPE_REFERENCE  = 'reference';
+    const DATA_TYPE_CONTEXTUAL = 'contextual';
 
     const DATA_TYPES = [
         self::DATA_TYPE_JSON,
-        self::DATA_TYPE_REFERENCE
+        self::DATA_TYPE_REFERENCE,
+        self::DATA_TYPE_CONTEXTUAL
     ];
 
     /**
@@ -112,8 +114,9 @@ class GoogleChartsContainer
      * @param DataContainer $dc
      * @return array
      */
-    public function getFields(DataContainer $dc) {
-        if(!$dc->activeRecord->dataContainer) {
+    public function getFields(DataContainer $dc)
+    {
+        if (!$dc->activeRecord->dataContainer) {
             return [];
         }
 
@@ -126,11 +129,11 @@ class GoogleChartsContainer
      */
     public function getEntities(DataContainer $dc)
     {
-        if(!$dc->activeRecord->dataContainer) {
+        if (!$dc->activeRecord->dataContainer) {
             return [];
         }
 
-        if(null === ($entities = $this->container->get('huh.utils.model')->findAllModelInstances($dc->activeRecord->dataContainer))) {
+        if (null === ($entities = $this->container->get('huh.utils.model')->findAllModelInstances($dc->activeRecord->dataContainer))) {
             return [];
         }
 

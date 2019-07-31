@@ -4,6 +4,7 @@
 namespace HeimrichHannot\GoogleChartsBundle\DataType\Concrete;
 
 
+use Contao\Validator;
 use HeimrichHannot\GoogleChartsBundle\DataType\AbstractDataType;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsNoReferenceEntitySetInChartConfig;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsReferenceEntityNotFound;
@@ -38,12 +39,19 @@ class DataTypeReference extends AbstractDataType
             return;
         }
 
-        if(!is_array($referenceData = $reference->{$field})) {
+        $referenceData = $reference->{$field};
+
+        // files
+        if (Validator::isUuid($referenceData))
+        {
+            $referenceData = $this->container->get('huh.utils.file')->getFileContentFromUuid($referenceData);
+        }
+
+        if(!is_array($referenceData)) {
             $referenceData = [$referenceData];
         }
 
-        array_unshift($data, [$config->labelX, $config->labelY]);
-
+        array_unshift($referenceData, [$config->labelX, $config->labelY]);
 
         $this->data = $data;
     }

@@ -29,6 +29,11 @@ abstract class AbstractChart implements ChartInterface
      */
     protected $chart;
 
+    /**
+     * @var array
+     */
+    protected $eventListeners = [];
+
 
     /**
      * AbstractChart constructor.
@@ -112,5 +117,30 @@ abstract class AbstractChart implements ChartInterface
             new GoogleChartsModifyChartDataEvent($config, $data));
 
         return $event->getData();
+    }
+
+    /**
+     * @return array
+     */
+    public function getEventListeners(): array
+    {
+        return $this->eventListeners;
+    }
+
+    /**
+     * @param array $eventListeners
+     */
+    public function setEventListeners(array $eventListeners): void
+    {
+        $this->eventListeners = $eventListeners;
+    }
+
+    /**
+     * @param string $eventName
+     * @param string $jsCode
+     */
+    public function addEventListener(string $eventName, string $jsCode)
+    {
+        $this->eventListeners[$eventName][] = $jsCode;
     }
 }

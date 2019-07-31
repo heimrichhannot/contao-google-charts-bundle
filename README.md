@@ -39,15 +39,6 @@ The simplest way to display the chart is to create a module that uses the chart 
 You can use the chart as reader config element in [heimrichhannot/contao-reader-bundle](https://github.com/heimrichhannot/contao-reader-bundle).
 If you have set the dataType to `reference` in the chart configuration the entity will be set automatically by the current item id.
 
-
-#### display chart as elevation profile in google maps reader config element
-
-If you have [heimrichhannot/contao-google-maps-bundle](https://github.com/heimrichhannot/contao-google-maps-bundle) installed you can display a elevation chart to a
-google map. Set the chart configuraton at the google maps reader config element. The chart will be added to the template as variable `elevation`.
-The elevation chart is added to the item using an event listener which listens to the `ReaderGoogleMapBeforeRenderEvent` event.
-
-
-
 ### DataTypes
 
 When data is added to the chart it has to be of type array.

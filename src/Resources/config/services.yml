@@ -32,3 +32,4 @@ services:
 
   HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeJson: ~
   HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeReference: ~
+  HeimrichHannot\GoogleChartsBundle\DataType\Concrete\DataTypeContextual: ~
