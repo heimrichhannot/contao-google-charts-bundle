@@ -42,7 +42,13 @@ class LineChart extends AbstractChart
             ->setLineWidth($this->getConfigValue('lineWidth'))
             ->setColors([html_entity_decode($this->getConfigValue('lineColor'))]);
 
+
+        $this->chart->getOptions()->getHAxis()->getTitleTextStyle()->setItalic('false');
+        $this->chart->getOptions()->getHAxis()->getTitleTextStyle()->setFontSize('14');
+        $this->chart->getOptions()->getHAxis()->setTextPosition('none');
         $this->chart->getOptions()->getHAxis()->setTitle($config->labelX);
+        $this->chart->getOptions()->getVAxis()->getTitleTextStyle()->setItalic('false');
+        $this->chart->getOptions()->getVAxis()->getTitleTextStyle()->setFontSize('14');
         $this->chart->getOptions()->getVAxis()->setTitle($config->labelY);
     }
 }

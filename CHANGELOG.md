@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2019-08-08
+
+#### Change
+
+- Add some styling options for an specific project, needs to get refactored as configurable optionset later
+
 ## [0.3.0] - 2019-07-31
 
 #### Fixed
