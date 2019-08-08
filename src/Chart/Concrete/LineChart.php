@@ -40,7 +40,8 @@ class LineChart extends AbstractChart
             ->setTitle($this->getConfigValue('title'))
             ->setCurveType($this->getConfigValue('curveType'))
             ->setLineWidth($this->getConfigValue('lineWidth'))
-            ->setColors([html_entity_decode($this->getConfigValue('lineColor'))]);
+            ->setColors([html_entity_decode($this->getConfigValue('lineColor'))])
+            ->getLegend()->setPosition('none');
 
 
         $this->chart->getOptions()->getHAxis()->getTitleTextStyle()->setItalic('false');

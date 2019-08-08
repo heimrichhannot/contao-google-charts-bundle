@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 2019-08-08
+
+#### Change
+
+- remove legend for a specific project, needs to get refactored as configurable optionset later
+
 ## [0.3.1] - 2019-08-08
 
 #### Change
