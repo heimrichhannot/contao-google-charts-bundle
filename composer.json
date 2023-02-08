@@ -4,7 +4,7 @@
   "description": "A bundle to visualize data with google charts api",
   "license": "LGPL-3.0-or-later",
   "require": {
-    "php": "^7.1",
+    "php": "^7.1||^8.0",
     "contao/core-bundle": "^4.4",
     "cmen/google-charts-bundle": "^3.1"
   },
