@@ -88,7 +88,10 @@ class GoogleChartsManager
         $chart->initChart($config);
         $dataType->initDataType($config);
 
-        $event = $this->container->get('event_dispatcher')->dispatch(GoogleChartsModifyChartDataEvent::NAME, new GoogleChartsModifyChartDataEvent($config, $dataType->getData()));
+        $event = $this->container->get('event_dispatcher')->dispatch(
+            new GoogleChartsModifyChartDataEvent($config, $dataType->getData()),
+            GoogleChartsModifyChartDataEvent::NAME
+        );
 
         if (!empty($event->getData()))
         {

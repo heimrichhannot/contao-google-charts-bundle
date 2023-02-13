@@ -7,7 +7,7 @@ namespace HeimrichHannot\GoogleChartsBundle\Event;
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
 use HeimrichHannot\ReaderBundle\Item\ItemInterface;
 use HeimrichHannot\ReaderBundle\Model\ReaderConfigElementModel;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class ReaderGoogleChartsBeforeAddToItemDataEvent extends Event
 {

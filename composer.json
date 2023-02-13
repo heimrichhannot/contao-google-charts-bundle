@@ -1,35 +1,30 @@
 {
-  "name": "heimrichhannot/contao-google-charts-bundle",
-  "type": "contao-bundle",
-  "description": "A bundle to visualize data with google charts api",
-  "license": "LGPL-3.0-or-later",
-  "require": {
-    "php": "^7.1||^8.0",
-    "contao/core-bundle": "^4.4",
-    "cmen/google-charts-bundle": "^5.0"
-  },
-  "suggest": {
-    "heimrichhannot/contao-google-maps-bundle": "1.2.*",
-    "heimrichhannot/contao-reader-bundle": "1.0.0-beta"
-  },
-  "authors": [
-    {
-      "name": "Heimrich & Hannot",
-      "email": "digitales@heimrich-hannot.de",
-      "homepage": "https://www.heimrich-hannot.de",
-      "role": "Developer"
+    "name": "heimrichhannot/contao-google-charts-bundle",
+    "type": "contao-bundle",
+    "description": "A bundle to visualize data with google charts api",
+    "license": "LGPL-3.0-or-later",
+    "require": {
+        "php": "^7.1 || ^8.0",
+        "contao/core-bundle": "^4.9",
+        "cmen/google-charts-bundle": "^5.0",
+        "symfony/config": "^4.4 || ^5.4",
+        "symfony/event-dispatcher-contracts": "^1.0 || ^2.0 || ^3.0"
+    },
+    "authors": [
+        {
+            "name": "Heimrich & Hannot",
+            "email": "digitales@heimrich-hannot.de",
+            "homepage": "https://www.heimrich-hannot.de",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HeimrichHannot\\GoogleChartsBundle\\": "src/"
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "HeimrichHannot\\GoogleChartsBundle\\ContaoManager\\Plugin",
+        "foxy": true
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "HeimrichHannot\\GoogleChartsBundle\\": "src/"
-    }
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "extra": {
-    "contao-manager-plugin": "HeimrichHannot\\GoogleChartsBundle\\ContaoManager\\Plugin",
-    "foxy": true
-  }
 }

@@ -31,11 +31,9 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('huh_google_charts');
 
-        $rootNode = $treeBuilder->root('huh_google_charts');
-
-        $rootNode
+        $treeBuilder->getRootNode()
             ->children()
                 ->arrayNode('templates')
                 ->addDefaultsIfNotSet()

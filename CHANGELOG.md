@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2023-02-13
+- Changed: dropped support for symfony 3, add support for symfony 5
+
 ## [0.3.4] - 2023-02-09
 
 - Updated: new version of cmen/google-charts-bundle

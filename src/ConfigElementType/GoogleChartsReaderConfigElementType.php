@@ -69,7 +69,10 @@ class GoogleChartsReaderConfigElementType implements ConfigElementType
             $chartConfig->dataEntity = $item->getRawValue('id');
         }
 
-        $event = $this->dispatcher->dispatch(ReaderGoogleChartsBeforeAddToItemDataEvent::NAME, new ReaderGoogleChartsBeforeAddToItemDataEvent($item, $readerConfigElement, $chartConfig));
+        $event = $this->dispatcher->dispatch(
+            new ReaderGoogleChartsBeforeAddToItemDataEvent($item, $readerConfigElement, $chartConfig),
+            ReaderGoogleChartsBeforeAddToItemDataEvent::NAME
+        );
 
         $chart = $manager->generateChart($event->getChartConfig());
         $chart = $this->container->get('huh.google_charts.manager.google_charts')->renderChart($chart, $event->getChartConfig());

@@ -113,8 +113,10 @@ abstract class AbstractChart implements ChartInterface
             $data = json_decode(StringUtil::deserialize($config->data, true)[0]);
         }
 
-        $event = $this->container->get('event_dispatcher')->dispatch(GoogleChartsModifyChartDataEvent::NAME,
-            new GoogleChartsModifyChartDataEvent($config, $data));
+        $event = $this->container->get('event_dispatcher')->dispatch(
+            new GoogleChartsModifyChartDataEvent($config, $data),
+            GoogleChartsModifyChartDataEvent::NAME
+        );
 
         return $event->getData();
     }

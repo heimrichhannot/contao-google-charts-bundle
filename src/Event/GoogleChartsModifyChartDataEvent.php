@@ -5,7 +5,7 @@ namespace HeimrichHannot\GoogleChartsBundle\Event;
 
 
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class GoogleChartsModifyChartDataEvent extends Event
 {
