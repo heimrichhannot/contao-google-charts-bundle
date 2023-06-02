@@ -4,7 +4,7 @@
     "description": "A bundle to visualize data with google charts api",
     "license": "LGPL-3.0-or-later",
     "require": {
-        "php": "^7.1 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "contao/core-bundle": "^4.9",
         "cmen/google-charts-bundle": "^5.0",
         "symfony/config": "^4.4 || ^5.4",
@@ -24,7 +24,6 @@
         }
     },
     "extra": {
-        "contao-manager-plugin": "HeimrichHannot\\GoogleChartsBundle\\ContaoManager\\Plugin",
-        "foxy": true
+        "contao-manager-plugin": "HeimrichHannot\\GoogleChartsBundle\\ContaoManager\\Plugin"
     }
 }

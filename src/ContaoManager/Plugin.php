@@ -23,10 +23,6 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
     {
         $loadAfter = [ContaoCoreBundle::class, CMENGoogleChartsBundle::class];
 
-        if (class_exists('HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle')) {
-            $loadAfter[] = 'HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle';
-        }
-
         if (class_exists('HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle')) {
             $loadAfter[] = 'HeimrichHannot\ReaderBundle\HeimrichHannotContaoReaderBundle';
         }
@@ -48,13 +44,6 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
             $extensionName,
             $extensionConfigs,
             __DIR__ . '/../Resources/config/config_reader.yml'
-        );
-
-        $extensionConfigs = ContainerUtil::mergeConfigFile(
-            'huh_encore',
-            $extensionName,
-            $extensionConfigs,
-            __DIR__ . '/../Resources/config/config_encore.yml'
         );
 
         return $extensionConfigs;

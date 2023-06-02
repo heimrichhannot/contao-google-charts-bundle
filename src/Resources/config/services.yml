@@ -9,6 +9,10 @@ services:
     HeimrichHannot\GoogleChartsBundle\DataType\DataTypeInterface:
       tags: ['huh.google_charts.data_type']
 
+  HeimrichHannot\GoogleChartsBundle\:
+    resource: '../../{EventListener}/*'
+    autowire: true
+    autoconfigure: true
 
 # Choice
   huh.google_charts.choice.template.chart:

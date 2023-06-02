@@ -1,7 +1,0 @@
-huh:
-  encore:
-    entries:
-      - { name: contao-google-charts-bundle, file: "vendor/heimrichhannot/contao-google-charts-bundle/src/Resources/assets/js/contao-google-charts-bundle.js"}
-    legacy:
-      js:
-        - contao-google-charts-bundle

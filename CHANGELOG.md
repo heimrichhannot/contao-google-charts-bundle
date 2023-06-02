@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2023-06-02
+- Changed: removed unused encore bundle setup
+
 ## [0.4.0] - 2023-02-13
 - Changed: dropped support for symfony 3, add support for symfony 5
 
