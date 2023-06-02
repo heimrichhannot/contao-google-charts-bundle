@@ -1,8 +1,12 @@
 <?php
 
+/*
+ * Copyright (c) 2023 Heimrich & Hannot GmbH
+ *
+ * @license LGPL-3.0-or-later
+ */
 
 namespace HeimrichHannot\GoogleChartsBundle\Manager;
-
 
 use HeimrichHannot\GoogleChartsBundle\Chart\AbstractChart;
 use HeimrichHannot\GoogleChartsBundle\Chart\ChartInterface;
@@ -13,6 +17,7 @@ use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsConfigNotFound;
 use HeimrichHannot\GoogleChartsBundle\Exception\GoogleChartsDataTypeNotFound;
 use HeimrichHannot\GoogleChartsBundle\Model\GoogleChartsModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class GoogleChartsManager
 {
@@ -31,34 +36,27 @@ class GoogleChartsManager
      */
     protected $dataTypes = [];
 
+    private RequestStack $requestStack;
 
     /**
      * GoogleChartManager constructor.
-     * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, RequestStack $requestStack)
     {
         $this->container = $container;
+        $this->requestStack = $requestStack;
     }
 
-
     /**
-     * add chart to registry
-     *
-     * @param AbstractChart $chart
-     * @param string $className
+     * add chart to registry.
      */
     public function addChart(AbstractChart $chart, string $className)
     {
         $this->charts[$this->getClassChoice($className)] = $chart;
     }
 
-
     /**
-     * add dataType to registry
-     *
-     * @param AbstractDataType $dataType
-     * @param string $className
+     * add dataType to registry.
      */
     public function addDataType(AbstractDataType $dataType, string $className)
     {
@@ -69,7 +67,7 @@ class GoogleChartsManager
     {
         return $this->container->get('huh.utils.template')->renderTwigTemplate($config->chartTemplate, [
             'chart' => $chart->getChart(),
-            'selector' => $this->getChartSelector($config)
+            'selector' => $this->getChartSelector($config),
         ]);
     }
 
@@ -78,11 +76,11 @@ class GoogleChartsManager
         $config = $this->getChartConfig($config);
 
         if (!($chart = $this->getChartClassByConfig($config))) {
-            throw new GoogleChartsChartClassNotFound('No chart class found for type ' . $config->type);
+            throw new GoogleChartsChartClassNotFound('No chart class found for type '.$config->type);
         }
 
         if (!($dataType = $this->getDataTypeByConfig($config))) {
-            throw new GoogleChartsDataTypeNotFound('No data Type found for config ' . $config->id);
+            throw new GoogleChartsDataTypeNotFound('No data Type found for config '.$config->id);
         }
 
         $chart->initChart($config);
@@ -93,35 +91,37 @@ class GoogleChartsManager
             GoogleChartsModifyChartDataEvent::NAME
         );
 
-        if (!empty($event->getData()))
-        {
+        if (!empty($event->getData())) {
             $chart->setChartData($chart->getChart(), $event->getData());
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+        if ($request) {
+            $request->attributes->set('huh_google_charts', true);
         }
 
         return $chart;
     }
 
-
     /**
      * @param mixed $id ID or model
-     * @return null|GoogleChartsModel
+     *
+     * @return GoogleChartsModel|null
      */
     public function getChartConfig($config)
     {
-        if (is_int($config)) {
+        if (\is_int($config)) {
             $config = $this->container->get('contao.framework')->getAdapter(GoogleChartsModel::class)->findByPk($config);
         }
 
-        if (!($config instanceof GoogleChartsModel)){
-            throw new GoogleChartsConfigNotFound('Could not find google chart config for id ' . $config);
+        if (!($config instanceof GoogleChartsModel)) {
+            throw new GoogleChartsConfigNotFound('Could not find google chart config for id '.$config);
         }
 
         return $config;
     }
 
-
     /**
-     * @param GoogleChartsModel $config
      * @return bool|AbstractChart
      */
     public function getChartClassByConfig(GoogleChartsModel $config)
@@ -132,16 +132,14 @@ class GoogleChartsManager
 
         $chartClasses = $this->getCharts();
 
-        if (array_key_exists($config->chartClass, $chartClasses)) {
+        if (\array_key_exists($config->chartClass, $chartClasses)) {
             return $chartClasses[$config->chartClass];
         }
 
         return false;
     }
 
-
     /**
-     * @param GoogleChartsModel $config
      * @return bool|AbstractDataType
      */
     public function getDataTypeByConfig(GoogleChartsModel $config)
@@ -152,18 +150,13 @@ class GoogleChartsManager
 
         $dataTypes = $this->getDataTypes();
 
-        if (array_key_exists($config->dataType, $dataTypes)) {
+        if (\array_key_exists($config->dataType, $dataTypes)) {
             return $dataTypes[$config->dataType];
         }
 
         return false;
     }
 
-
-    /**
-     * @param string $type
-     * @return array
-     */
     public function getChartClassesByType(string $type): array
     {
         $classes = [];
@@ -179,10 +172,6 @@ class GoogleChartsManager
         return $classes;
     }
 
-
-    /**
-     * @return array
-     */
     public function getDataTypeClasses(): array
     {
         $dataTypes = [];
@@ -194,39 +183,23 @@ class GoogleChartsManager
         return $dataTypes;
     }
 
-
-    /**
-     * @param GoogleChartsModel $config
-     * @return string
-     */
     public function getChartSelector(GoogleChartsModel $config): string
     {
-        return 'huh_google_charts_' . substr(md5(microtime()), rand(0, 26), 5);
+        return 'huh_google_charts_'.substr(md5(microtime()), rand(0, 26), 5);
     }
 
-
-    /**
-     * @return array
-     */
     public function getCharts(): array
     {
         return $this->charts;
     }
 
-
-    /**
-     * @return array
-     */
     public function getDataTypes(): array
     {
         return $this->dataTypes;
     }
 
-
     public function getClassChoice(string $class): string
     {
         return str_replace('\\', '_', $class);
     }
-
 }
-
