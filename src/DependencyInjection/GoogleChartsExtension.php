@@ -1,9 +1,15 @@
 <?php
 
+/*
+ * Copyright (c) 2023 Heimrich & Hannot GmbH
+ *
+ * @license LGPL-3.0-or-later
+ */
 
 namespace HeimrichHannot\GoogleChartsBundle\DependencyInjection;
 
-
+use HeimrichHannot\GoogleChartsBundle\EventListener\PrivacyCenterListener;
+use HeimrichHannot\PrivacyCenterBundle\HeimrichHannotPrivacyCenterBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
@@ -14,7 +20,6 @@ class GoogleChartsExtension extends Extension
         return 'huh_google_charts';
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -24,5 +29,9 @@ class GoogleChartsExtension extends Extension
         $processedConfig = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('huh.google_charts', $processedConfig);
+
+        if (!class_exists(HeimrichHannotPrivacyCenterBundle::class)) {
+            $container->removeDefinition(PrivacyCenterListener::class);
+        }
     }
 }

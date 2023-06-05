@@ -35,7 +35,7 @@ class PrivacyCenterListener implements EventSubscriberInterface
             return;
         }
 
-        $script = new ExternalScriptFile('google_charts', $event::SCRIPT_SRC);
+        $script = new ExternalScriptFile('google_charts', $event::SCRIPT_SRC, ['async' => false]);
         $this->privacyCenterManager->addProtectedScript($script);
         $event->setCode(null);
     }
