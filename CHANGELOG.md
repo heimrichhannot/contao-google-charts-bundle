@@ -1,7 +1,8 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2023-06-02
+## [0.4.1] - 2023-06-02
+- Added: privacy center support ([#1])
 - Changed: removed unused encore bundle setup
 
 ## [0.4.0] - 2023-02-13
@@ -54,3 +55,5 @@ All notable changes to this project will be documented in this file.
 ## [0.1.0] - 2019-07-02
 
 - initial commit
+
+[#1]: https://github.com/heimrichhannot/contao-google-charts-bundle/pull/1
